@@ -2,7 +2,7 @@ from talon.voice import Context, Key
 
 from ..utils import text
 
-PREFIX = "jet "
+PREFIX = "get "
 
 # Note that there are no application or window filters on this context because
 # git may need to be used outside of the terminal, such as in a browser
@@ -16,6 +16,33 @@ ctx.keymap(
         # only need one set of commands (eg by completing github issue #40 (use a
         # more comprehensive git grammar))
         # git commands originally from std.py
+        "run get": "git ",
+        "run get (R M | remove)": "git rm ",
+        "run get add": "git add ",
+        "run get add dot": "git add .",
+        "run get amend": "git commit --amend --no-edit",
+        "run get bisect": "git bisect ",
+        "run get branch": "git branch ",
+        "run get checkout": "git checkout ",
+        "run get checkout master": "git checkout master ",
+        "run get clone": "git clone ",
+        "run get commit": "git commit ",
+        "run get diff": ["git diff ", Key("enter")],
+        "run get fetch": "git fetch ",
+        "run get grep": "git grep ",
+        "run get in it": "git init ",
+        "run get log": "git log ",
+        "run get merge": "git merge ",
+        "run get move": "git mv ",
+        "run get pull": "git pull ",
+        "run get push": "git push ",
+        "run get push origin master": "git push origin master ",
+        "run get rebase": "git rebase ",
+        "run get reset": "git reset ",
+        "run get show": "git show ",
+        "run get stash": "git stash ",
+        "run get status": ["git status ", Key("enter")],
+        "run get tag": "git tag ",
         # git commands originally from terminal.py
         # PREFIX + "[<dgndictation>]": ["git ", text],
         PREFIX + "add [<dgndictation>]": ["git add ", text],
@@ -43,16 +70,13 @@ ctx.keymap(
         ],
         PREFIX
         + "commit all [<dgndictation>]": ['git commit -a -m ""', Key("left"), text],
-        PREFIX
-        + "commit ticket [number]": ['git commit -m "[#]"', Key("left"), Key("left")],
         PREFIX + "config [<dgndictation>]": ["git config ", text],
         PREFIX + "config list [<dgndictation>]": ["git config --list ", text],
         PREFIX + "diff [<dgndictation>]": ["git diff ", text],
-        PREFIX + "diff staged": "git diff --staged ",
         PREFIX + "fetch": "git fetch ",
         PREFIX + "history": "git hist ",
         PREFIX + "grep": "git grep ",
-        PREFIX + "(in it | init | initialize)": "git init ",
+        PREFIX + "(in it | init)": "git init ",
         PREFIX + "log": "git log ",
         PREFIX + "merge [<dgndictation>]": ["git merge ", text],
         PREFIX + "move [<dgndictation>]": ["git mv ", text],
@@ -65,13 +89,9 @@ ctx.keymap(
         PREFIX + "push [<dgndictation>]": ["git push ", text],
         PREFIX + "push force [<dgndictation>]": ["git push --force ", text],
         PREFIX
-        + "push force lease [<dgndictation>]": ["git push --force-with-lease ", text],
-        PREFIX
         + "push set up stream [<dgndictation>]": ["git push --set-upstream ", text],
-        PREFIX + "push set up new branch": "git push --set-upstream origin HEAD",
         PREFIX + "rebase continue": "git rebase --continue",
         PREFIX + "rebase [<dgndictation>]": ["git rebase ", text],
-        PREFIX + "remote add [<dgndictation>]": ["git remote add ", text],
         PREFIX + "(remove | R M) [<dgndictation>]": ["git rm ", text],
         PREFIX + "reset [<dgndictation>]": ["git reset ", text],
         PREFIX + "reset hard": "git reset --hard ",
@@ -81,11 +101,6 @@ ctx.keymap(
         PREFIX + "stash apply": "git stash apply ",
         PREFIX + "stash pop": "git stash pop ",
         PREFIX + "status": "git status ",
-        PREFIX + "submodule": "git submodule ",
-        PREFIX + "submodule add": "git submodule add ",
-        PREFIX + "submodule in it": "git submodule init",
-        PREFIX + "submodule update": "git submodule update",
         PREFIX + "tag": "git tag ",
-        PREFIX + "add commit": ["git add  && git commit"] + ([Key("left")] * 14),
     }
 )

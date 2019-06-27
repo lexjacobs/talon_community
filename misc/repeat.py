@@ -21,12 +21,13 @@ def repeat(m):
 
 ctx.keymap(
     {
-        "wink": Rep(1),
+        # "wink": Rep(1),
         "creek": RepPhrase(1),
-        "soup": Rep(2),
-        "trace": Rep(3),
-        "quarr": Rep(4),
-        "fypes": Rep(5),
-        "(repeat | repple)" + utils.numerals: repeat,
+        # "soup": Rep(2),
+        # "trace": Rep(3),
+        # "quarr": Rep(4),
+        # "fypes": Rep(5),
+        # "(repeat | repple)" + utils.numerals: repeat,
+        "repeat" + utils.numerals: repeat,
     }
 )

@@ -5,20 +5,28 @@ from ..utils import normalise_keys, insert
 alpha_alt = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split()
 alphabet = dict(zip(alpha_alt, string.ascii_lowercase))
 
-f_keys = {f"F {i}": f"f{i}" for i in range(1, 13)}
+# f_keys = {f"F {i}": f"f{i}" for i in range(1, 13)}
+f_keys = {f"funky {i}": f"f{i}" for i in range(1, 13)}
 
 simple_keys = normalise_keys(
     {
-        "(crimp | lloyd)": "left",
-        "chris": "right",
-        "jeep": "up",
-        "( dune | doom )": "down",
-        "( backspace | junk )": "backspace",
-        "(delete | forward delete | scrap | spunk)": "delete",
-        "(space | skoosh)": "space",
-        "(tab | tarp)": "tab",
-        "( enter | shock )": "enter",
-        "( escape | randall )": "escape",
+        # "(crimp | lloyd)": "left",
+        # "chris": "right",
+        # "jeep": "up",
+        # "( dune | doom )": "down",
+        # "( backspace | junk )": "backspace",
+        "delete": "backspace",
+        # "(delete | forward delete | scrap | spunk)": "delete",
+        "spunk": "delete",
+        # "(space | skoosh)": "space",
+        "space": "space",
+        # "(tab | tarp)": "tab",
+        "tab": "tab",
+        "tarp": "shift-tab",
+        # "( enter | shock )": "enter",
+        "enter": "enter",
+        # "( escape | randall )": "escape",
+        "escape": "escape",
         "home": "home",
         "pagedown": "pagedown",
         "pageup": "pageup",
@@ -32,26 +40,33 @@ symbols = normalise_keys(
         # keys to press on a standard US keyboard layout. Commands for keys that do
         # require modifiers (e.g. ``"caret": "^"`) should belong in
         # ``text/symbol.py``.
-        "(tick | back tick)": "`",
-        "(comma | ,)": ",",
+        # "(tick | back tick)": "`",
+        "tanker": "`",
+        # "(comma | ,)": ",",
+        "comma": ",",
         "(dot | period)": ".",
-        "(semicolon | semi)": ";",
+        "point": ".",
+        "(semicolon | semi | sunk)": ";",
         "(quote | quatchet)": "'",
-        "(square | L square | left square | left square bracket)": "[",
-        "(R square | right square | right square bracket)": "]",
+        "(square | L square | left square | left square bracket | index left)": "[",
+        "(R square | right square | right square bracket | index right)": "]",
         "(slash | forward slash)": "/",
         "backslash": "\\",
         "(minus | dash)": "-",
-        "(equals | smaqual)": "=",
+        "(equal | equals | smaqual)": "=",
+        "plus": "+",
     }
 )
 
 modifiers = normalise_keys(
     {
         "command": "cmd",
-        "(control | troll)": "ctrl",
-        "(shift | sky)": "shift",
-        "(alt | option)": "alt",
+        # "(control | troll)": "ctrl",
+        "control": "ctrl",
+        # "(shift | sky)": "shift",
+        "shift": "shift",
+        # "(alt | option)": "alt",
+        "option": "alt",
     }
 )
 
@@ -116,14 +131,14 @@ def press_keys(m):
 ctx = Context("basic_keys")
 ctx.keymap(
     {
-        "(uppercase | ship | sky) {basic_keys.alphabet}+ [(lowercase | sunk)]": uppercase_letters,
+        "sky {basic_keys.alphabet}+ [lower]": uppercase_letters,
         "{basic_keys.modifiers}* {basic_keys.alphabet}+": press_keys,
         "{basic_keys.modifiers}* {basic_keys.digits}+": press_keys,
         "{basic_keys.modifiers}* {basic_keys.keys}+": press_keys,
         "(go | {basic_keys.modifiers}+) {basic_keys.arrows}+": press_keys,
         "number {basic_keys.digits}+ [over]": press_keys,
-        "tarsh": Key("shift-tab"),
-        "tarpy": [Key("tab"), Key("tab")],
+        # "tarsh": Key("shift-tab"),
+        # "tarpy": [Key("tab"), Key("tab")],
     }
 )
 ctx.set_list("alphabet", alphabet.keys())

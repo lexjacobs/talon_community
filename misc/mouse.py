@@ -4,7 +4,7 @@
 # import eye
 import time
 from talon import ctrl, tap, ui
-from talon.voice import Context
+from talon.voice import Context, Key
 
 ctx = Context("mouse")
 
@@ -56,6 +56,10 @@ def command_click(m, button=0, times=1):
     press_key_and_click(m, "cmd", button, times)
 
 
+def option_click(m, button=0, times=1):
+    press_key_and_click(m, "alt", button, times)
+
+
 def delayed_right_click(m):
     delayed_click(m, button=1)
 
@@ -95,20 +99,38 @@ def mouse_center(m):
 
 keymap = {
     # jsc modified with some voice-code compatibility
-    "righty": delayed_right_click,
-    "(click | chiff)": delayed_click,
-    "(dubclick | duke)": delayed_dubclick,
-    "(tripclick | triplick)": delayed_tripclick,
-    "drag": mouse_drag,
-    "drag release": mouse_release,
+    # "righty": delayed_right_click,
+    "click right": delayed_right_click,
+    # "(click | chiff)": delayed_click,
+    "click left": delayed_click,
+    # "(dubclick | duke)": delayed_dubclick,
+    "click double": delayed_dubclick,
+    # "(tripclick | triplick)": delayed_tripclick,
+    "click triple": delayed_tripclick,
+    "mouse (hold | press)": mouse_drag,
+    "click hold": mouse_drag,
+    "(mouse | click) release": mouse_release,
     # jsc added
-    "(shift click | shicks)": shift_click,
-    "(command click | chom lick)": command_click,
-    "wheel down": mouse_scroll(200),
-    "wheel up": mouse_scroll(-200),
-    "wheel down here": [mouse_center, mouse_scroll(200)],
-    "wheel up here": [mouse_center, mouse_scroll(-200)],
-    "mouse center": mouse_center,
+    # "(shift click | shicks)": shift_click,
+    "click shift": shift_click,
+    # "(command click | chom lick)": command_click,
+    "click command": command_click,
+    "click option": option_click,
+    # "wheel down": mouse_scroll(200),
+    # "wheel up": mouse_scroll(-200),
+    "click double cut": [lambda m: ctrl.mouse_click(button=0, times=2), Key("cmd-x")],
+    "click double copy": [lambda m: ctrl.mouse_click(button=0, times=2), Key("cmd-c")],
+    "click double paste": [lambda m: ctrl.mouse_click(button=0, times=2), Key("cmd-v")],
+    "mouse corner": lambda m: ctrl.mouse(0, 0),
+    "(mouse | move) up": lambda m: ctrl.mouse(0, 0, dx=0, dy=-10),
+    "(mouse | move) right": lambda m: ctrl.mouse(0, 0, dx=10, dy=0),
+    "(mouse | move) left": lambda m: ctrl.mouse(0, 0, dx=-10, dy=0),
+    "(mouse | move) down": lambda m: ctrl.mouse(0, 0, dx=0, dy=10),
+    "scroll down": lambda m: ctrl.mouse_scroll(y=ui.active_window().frame.height / 2),
+    "scroll up": lambda m: ctrl.mouse_scroll(y=-ui.active_window().frame.height / 2),
+    "scroll left": lambda m: ctrl.mouse_scroll(x=-ui.active_window().frame.width / 2),
+    "scroll right": lambda m: ctrl.mouse_scroll(x=ui.active_window().frame.width / 2),
+    "mouse (center | middle)": mouse_center,
 }
 
 ctx.keymap(keymap)

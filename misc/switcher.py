@@ -24,7 +24,6 @@ def lookup_app(m=None, name=None):
 def switch_app(m=None, name=None):
     app = lookup_app(m=m, name=name)
     app.focus()
-    print(dir(app))
     # TODO: replace sleep with a check to see when it is in foreground
     time.sleep(0.25)
 
@@ -43,15 +42,16 @@ def launch_app(m=None, name=None):
 ctx = Context("switcher")
 ctx.keymap(
     {
-        "(focus | fox) {switcher.running}": switch_app,
+        "focus {switcher.running}": switch_app,
         "launch {switcher.launch}": launch_app,
         # custom switchers here
-        "madam": lambda x: switch_app(x, "Atom"),
-        "system preferences": lambda x: switch_app(x, "System Preferences"),
+        # "madam": lambda x: switch_app(x, "Atom"),
+        # "system preferences": lambda x: switch_app(x, "System Preferences"),
     }
 )
 
-hardcoded_application_names = {"term": "iTerm2", "ink": "Inkdrop"}
+# hardcoded_application_names = {"term": "iTerm2", "ink": "Inkdrop"}
+hardcoded_application_names = {}
 
 
 def update_lists():

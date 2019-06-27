@@ -9,7 +9,7 @@ from talon_init import TALON_HOME
 path = os.path.join(TALON_HOME, "last_phrase")
 WEBVIEW = True
 NOTIFY = False
-hist_len = 6
+hist_len = 2
 
 
 def parse_phrase(phrase):
@@ -72,7 +72,9 @@ if WEBVIEW:
     webview = webview.Webview()
     webview.render(template, phrases=["command"])
     webview.show()
-    webview.move(1, ui.main_screen().height)
+    # webview.move(1, ui.main_screen().height)
+    # hack to put it at the bottom-left corner
+    webview.move(100, -2000)
 
 
 class History:

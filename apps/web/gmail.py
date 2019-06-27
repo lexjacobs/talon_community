@@ -100,7 +100,7 @@ ctx.keymap(
         "archive": send_key_to_page("e"),
         "mute conversation": send_key_to_page("m"),
         "report spam": send_key_to_page("!"),
-        "delete": send_key_to_page("#"),
+        "message delete": send_key_to_page("#"),
         "reply": send_key_to_page("r"),
         "reply in new window": send_key_to_page("shift-r"),
         "reply all": send_key_to_page("a"),

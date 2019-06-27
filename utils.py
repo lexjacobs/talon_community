@@ -28,9 +28,24 @@ def local_filename(file, name):
     return os.path.join(os.path.dirname(os.path.realpath(file)), name)
 
 
+token_replace = {
+    "e-mail": "email",
+    "I\\pronoun": "I",
+    ".\\point": "point",
+    "I'll": "I'll",
+    "I'm": "I'm",
+    "I've": "I've",
+    "I'd": "I'd",
+    "JavaScript": "JavaScript",
+}
+
+
 def parse_word(word, force_lowercase=True):
+    if word in token_replace:
+        return token_replace.get(word)
+
     if force_lowercase:
-        word = word.lower()
+        word = str(word).lower()
     word = mapping.get(word, word)
 
     return word
@@ -39,8 +54,6 @@ def parse_word(word, force_lowercase=True):
 def replace_words(words, mapping, count):
     if len(words) < count:
         return words
-
-    # print(words, mapping, count)
 
     new_words = []
     i = 0
@@ -59,18 +72,22 @@ def replace_words(words, mapping, count):
 
 
 def remove_dragon_junk(word):
+    if word == "I\\pronoun":
+        # needed to retain I pronoun capitilazation
+        return word
     if word == ".\\point\\point":
-        return "point"
+        return word
     else:
-        return str(word).lstrip("\\").split("\\", 1)[0].replace("-", " ").strip()
+        return str(word).lstrip("\\").split("\\", 1)[0]
 
 
+# I changed this to actually "fix" apostrophes
 def remove_appostrophe_s(words):
     if "'s" in words:
         new_words = []
         for i, word in enumerate(words):
             if word == "'s":
-                new_words[-1] += "s"
+                new_words[-1] += "'s"
             else:
                 new_words.append(word)
         return new_words
@@ -90,9 +107,7 @@ def parse_words(m, natural=False):
     words = list(map(remove_dragon_junk, words))
     words = remove_appostrophe_s(words)
     words = sum([word.split(" ") for word in words], [])
-    if not natural:
-        words = [word.lower() for word in words]
-
+    words = list(map(lambda current_word: parse_word(current_word, not natural), words))
     # replace words and all orders to make sure the replacement is more complete ... a more principled approach here would be nice
     words = replace_words(words, mappings[4], 4)
     words = replace_words(words, mappings[3], 3)
@@ -102,8 +117,6 @@ def parse_words(m, natural=False):
     words = replace_words(words, mappings[2], 2)
     words = replace_words(words, mappings[3], 3)
     words = replace_words(words, mappings[4], 4)
-    words = sum([word.split(" ") for word in words], [])
-
     return words
 
 
@@ -121,7 +134,8 @@ def insert(s):
 
 
 def string_capture(m):
-    return join_words(parse_words(m)).lower()
+    # return join_words(parse_words(m)).lower()
+    return join_words(parse_words(m))
 
 
 def text(m):
@@ -137,7 +151,8 @@ def spoken_text(m):
 
 
 def sentence_text(m):
-    raw_sentence = join_words(parse_words(m, True))
+    # raw_sentence = join_words(parse_words(m, True))
+    raw_sentence = join_words(parse_words(m))
     sentence = raw_sentence[0].upper() + raw_sentence[1:]
     insert(sentence)
 
@@ -147,7 +162,8 @@ def word(m):
         text = join_words(
             map(lambda w: parse_word(remove_dragon_junk(w)), m.dgnwords[0]._words)
         )
-        insert(text.lower())
+        # insert(text.lower())
+        insert(text)
     except AttributeError:
         pass
 

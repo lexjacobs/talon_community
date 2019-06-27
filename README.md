@@ -6,6 +6,9 @@ A single source of application-specific scripts
 
 Clone a fork of this repository in a directory inside of your `user` directory, such as `community`.
 
+### lexjacobs fork notes:
+Alex is keeping master more or less in line with upstream/master. He is committing his incremental updates to the 'lex' branch
+
 ## Installation
 
 If you wish to develop on these scripts, run in the project root:
@@ -53,4 +56,3 @@ The following have been empirically determined, could change at any point, and a
 
  - Given two definitions for "foo" in the same keymap, the second will be used.
  - Given definitions for, 1. "foo <dgngdictation>"  2. "foo" and 3. "bar", saying "foo bar" will trigger (2) then (3) and saying "foo baz" will trigger (1).
-

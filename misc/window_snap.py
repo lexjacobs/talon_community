@@ -8,9 +8,7 @@ from .. import utils
 from . import switcher
 
 """Provides a voice-driven window management application implemented in Talon.
-
 You can use this to replace applications like Spectacle, BetterSnapTool, and Divvy.
-
 Todo:
     - Provide for mapping keyboard shortcuts as a fallback when the new API is launched.
 """
@@ -100,7 +98,6 @@ def resize_to_grid(column, row, columns, rows, colspan=1, rowspan=1):
 def grid(column, row, columns, rows, colspan=1, rowspan=1):
     """Resize and move a window to a specific column and row within a grid of columns and rows. Optionally, you can
     span multiple rows or columns (to achieve things like "right two-thirds").
-
     Examples:
         1, 1, 2, 2: moves to top-left fourth (corner) of screen
         3, 1, 3, 1: moves to right third of screen
@@ -131,6 +128,7 @@ def window_move_application_screen(m):
 
 
 ctx = Context("window_management")
+
 ctx.keymap(
     {
         "snap left": grid(1, 1, 2, 1),
@@ -141,13 +139,14 @@ ctx.keymap(
         "snap top right": grid(2, 1, 2, 2),
         "snap bottom left": grid(1, 2, 2, 2),
         "snap bottom right": grid(2, 2, 2, 2),
-        "snap (screen | window)": grid(1, 1, 1, 1),
-        "snap center": grid(2, 2, 8, 8, 6, 6),
+        "snap screen": grid(1, 1, 1, 1),
         "snap next": next_screen,
         "snap last": previous_screen,
         "window [move] next screen": next_screen,
         "window [move] preev screen": previous_screen,
         "window [move] screen" + utils.numerals: window_move_screen,
+        "snap middle": grid(2, 2, 20, 20, 18, 18),
+        "snap bar": grid(1, 1, 20, 20, 20, 19),
         "[window] [move] {switcher.running} [to] screen "
         + utils.numerals: window_move_application_screen,
     }
