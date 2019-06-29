@@ -12,7 +12,8 @@ from ..utils import (
 
 JS_EXTENSIONS = (".js", ".jsx")
 
-context = Context("javascript", func=is_filetype(JS_EXTENSIONS))
+context = Context("javascript")
+# context = Context("javascript", func=is_filetype(JS_EXTENSIONS))
 
 
 def remove_spaces_around_dashes(m):
