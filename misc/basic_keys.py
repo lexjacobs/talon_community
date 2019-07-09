@@ -47,7 +47,7 @@ symbols = normalise_keys(
         "(dot | period)": ".",
         "point": ".",
         "(semicolon | semi | sunk)": ";",
-        "(quote | quatchet)": "'",
+        "quote": "'",
         "(square | L square | left square | left square bracket | index left)": "[",
         "(R square | right square | right square bracket | index right)": "]",
         "(slash | forward slash)": "/",
