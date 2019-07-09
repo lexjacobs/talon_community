@@ -14,7 +14,7 @@ keymap = {
     "page up": [Key("pageup")],
     "page down": [Key("pagedown")],
     # searching
-    "(search | marco)": Key("cmd-f"),
+    "marco": Key("cmd-f"),
     "marco right": Key("cmd-g"),
     "marco left": Key("cmd-shift-g"),
     "marco this": [Key("alt-right"), Key("shift-alt-left"), Key("cmd-f"), Key("enter")],
