@@ -18,7 +18,11 @@ def get_url(win=None):
         win = ui.active_window()
 
     if win.app.bundle == "com.google.Chrome":
-        return win.children.find(AXTitle="Address and search bar")[0].AXValue
+        try:
+            return win.children.find(AXTitle="Address and search bar")[0].AXValue
+        except Exception:
+            print("get_url: list index out of range")
+            return {}
     else:
         raise ValueError("no method for getting url from not chrome yet")
     # win.children.find(AXTitle='Address and search bar')[0].AXValue
