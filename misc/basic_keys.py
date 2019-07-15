@@ -118,8 +118,8 @@ def press_keys(m):
     mods = get_modifiers(m)
     keys = get_keys(m)
 
-    if mods == ["shift"] and all(key in alphabet.values() for key in keys):
-        return uppercase_letters(m)
+    # if mods == ["shift"] and all(key in alphabet.values() for key in keys):
+    #     return uppercase_letters(m)
 
     if mods:
         press("-".join(mods + [keys[0]]))
