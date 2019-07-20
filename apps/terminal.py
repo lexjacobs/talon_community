@@ -106,6 +106,7 @@ keymap = {
     "kite": [Key("esc"), Key("d")],
     "trough": [Key("ctrl-w")],
     "open code": Str("code .\n"),
+    "open here": Str("open .\n"),
     # "open sublime": Str("subl .\n"),
     # "open adam": Str("atom .\n"),
     "window clear": Key("cmd-k"),

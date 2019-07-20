@@ -114,7 +114,7 @@ shrink_map = {
     "standard": "std",
     "standing": "stdin",
     "standout": "stdout",
-    "string": "str",
+    "string": "JSON.stringify",
     "system": "sys",
     "temporary": "tmp",
     "text": "txt",

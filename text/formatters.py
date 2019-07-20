@@ -70,7 +70,7 @@ formatters = normalise_keys(
 surrounders = normalise_keys(
     {
         "dubstring": (False, surround('"')),
-        "string": (False, surround("'")),
+        "quoted": (False, surround("'")),
         "glitch": (False, surround("`")),
         "padded": (False, surround(" ")),
         # "dunder": (False, surround("__")),

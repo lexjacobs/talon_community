@@ -50,7 +50,6 @@ ctx.keymap(
         "word (sql|sequel)": "sequelize",
         "word shell": "shell",
         "word slack": "slack",
-        "word string": "JSON.stringify",
         "word ping": "ping ",
         "word pseudo": "sudo ",
         "word talon": "talon",
