@@ -1,9 +1,13 @@
 from talon.voice import Context, press, Key
-import string
+import string, operator
 from ..utils import normalise_keys, insert
 
-alpha_alt = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split()
-alphabet = dict(zip(alpha_alt, string.ascii_lowercase))
+# original
+# alpha_alt = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip".split()
+# alphabet = dict(zip(alpha_alt, string.ascii_lowercase))
+# adding additional simultaneous versions of two letters that are often troublesome
+alpha_alt = "air bat cap drum each fine gust harp sit jury crunch look made near odd pit quench red sun trap urge vest whale plex yank zip oil wick".split()
+alphabet = dict(zip(alpha_alt, operator.concat(string.ascii_lowercase, "ow")))
 
 # f_keys = {f"F {i}": f"f{i}" for i in range(1, 13)}
 f_keys = {f"funky {i}": f"f{i}" for i in range(1, 13)}
