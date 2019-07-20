@@ -165,6 +165,7 @@ ctx.keymap(
         "phrase <dgndictation>++ [over]": text,
         "sentence <dgndictation> [over]": [" ", sentence_text],
         "dot <dgndictation> [over]": [".", text],
+        "teapot <dgndictation> [over]": ["this.", text],
         "champ <dgndictation> [over]": sentence_text,
         "marco <dgndictation> [over]": [Key("cmd-f"), text, Key("enter")],
         "assign <dgndictation> [over]": [" = ", text],
