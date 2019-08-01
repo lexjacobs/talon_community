@@ -202,6 +202,7 @@ ctx.keymap(
         "rocky": Key("alt-right"),
         # "(go line after end | derek)": Key("cmd-right space"),
         "derek": Key("cmd-right space"),
+        "smear": Key("cmd-right left"),
         # "(go line start | lefty)": Key("cmd-left"),
         "lefty": Key("cmd-left"),
         # "(go line end | ricky)": Key("cmd-right"),
