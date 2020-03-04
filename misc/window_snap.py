@@ -131,6 +131,7 @@ ctx = Context("window_management")
 
 ctx.keymap(
     {
+        "snap full": grid(1, 1, 1, 1),
         "snap left": grid(1, 1, 2, 1),
         "snap right": grid(2, 1, 2, 1),
         "snap top": grid(1, 1, 1, 2),
